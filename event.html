@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event — HackPath</title>
+  <meta name="description" content="Explore skill tracks and learning paths for this hackathon event on HackPath.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-icon">🚀</span>
+        HackPath
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Events</a>
+        <a href="admin.html" class="nav__link">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Event Hero -->
+  <section class="event-hero" id="event-hero">
+    <div class="container">
+      <div class="event-hero__breadcrumb" id="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="event-hero__breadcrumb-sep">/</span>
+        <span id="breadcrumb-event">Event</span>
+      </div>
+      <div class="event-hero__content" id="event-hero-content">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="container" id="skills-section">
+    <div class="section-header">
+      <span class="section-header__label">Skill Tracks</span>
+      <h2 class="section-header__title" id="skills-title">Learning Paths</h2>
+      <p class="section-header__subtitle">Choose a skill to start your preparation journey.</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar" id="skill-search-bar">
+      <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input 
+        type="search" 
+        class="search-bar__input" 
+        id="skill-search-input"
+        placeholder="Search skills..." 
+        aria-label="Search skills"
+        autocomplete="off"
+      >
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-chips" id="filter-chips">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="card-grid" id="skills-grid">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="empty-state__icon">🔍</div>
+      <h3 class="empty-state__title">No skills found</h3>
+      <p class="empty-state__text">Try adjusting your search or filter.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__text">© 2026 HackPath — Built for hackathon teams</p>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">All Events</a>
+        <a href="admin.html" class="footer__link">Admin Panel</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/event-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — HackPath</title>
+  <meta name="description" content="Create and manage hackathon events and skill tracks on HackPath.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-icon">🚀</span>
+        HackPath
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Events</a>
+        <a href="admin.html" class="nav__link nav__link--active">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Header -->
+  <section class="hero" style="padding: var(--space-12) 0 var(--space-8);">
+    <div class="container">
+      <h1 class="hero__title" style="font-size: var(--font-3xl);">
+        Admin <span class="hero__title-gradient">Panel</span>
+      </h1>
+      <p class="hero__subtitle" style="font-size: var(--font-base);">
+        Create new events and skills. Fill out the form, generate the JSON, and paste it into <code>js/data.js</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mode Selector -->
+  <section class="container">
+    <div class="admin-tabs" id="mode-tabs" style="max-width: 400px; margin: 0 auto var(--space-8);">
+      <button class="admin-tab admin-tab--active" data-mode="event" id="mode-event-tab">New Event</button>
+      <button class="admin-tab" data-mode="skill" id="mode-skill-tab">New Skill</button>
+    </div>
+  </section>
+
+  <!-- Admin Content -->
+  <section class="container">
+    <div class="admin-layout">
+
+      <!-- Form Side -->
+      <div class="admin-form" id="admin-form">
+        <!-- EVENT FORM -->
+        <div id="event-form-container">
+          <h2 style="font-size: var(--font-xl); font-weight: 700; margin-bottom: var(--space-6);">Create New Event</h2>
+
+          <div class="form-group">
+            <label class="form-label" for="event-name">Event Name *</label>
+            <input type="text" class="form-input" id="event-name" placeholder="e.g., AI Innovation Hackathon 2026">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-short-name">Short Name</label>
+            <input type="text" class="form-input" id="event-short-name" placeholder="e.g., AI Hack '26">
+            <p class="form-hint">Used in breadcrumbs and compact views.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-id">Event ID (slug) *</label>
+            <input type="text" class="form-input" id="event-id" placeholder="e.g., ai-hackathon-2026">
+            <p class="form-hint">URL-friendly identifier. Lowercase, hyphens only.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-description">Description *</label>
+            <textarea class="form-textarea" id="event-description" placeholder="Describe the hackathon event..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-date">Event Date *</label>
+            <input type="datetime-local" class="form-input" id="event-date">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-location">Location</label>
+            <input type="text" class="form-input" id="event-location" placeholder="e.g., Algiers, Algeria or Online">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-organizer">Organizer</label>
+            <input type="text" class="form-input" id="event-organizer" placeholder="e.g., TechHub Algeria">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-team-size">Max Team Size</label>
+            <input type="number" class="form-input" id="event-team-size" placeholder="4" min="1" max="20" value="4">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-icon">Icon (emoji)</label>
+            <input type="text" class="form-input" id="event-icon" placeholder="🤖" maxlength="4" style="max-width: 80px; font-size: 1.5rem; text-align: center;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-categories">Categories (comma-separated)</label>
+            <input type="text" class="form-input" id="event-categories" placeholder="e.g., Frontend, Backend, AI/ML, Design">
+            <p class="form-hint">These become the filter chips on the event page.</p>
+          </div>
+
+          <button class="btn btn--primary" onclick="generateEventJSON()" style="width: 100%; margin-top: var(--space-4);">
+            Generate Event JSON
+          </button>
+        </div>
+
+        <!-- SKILL FORM -->
+        <div id="skill-form-container" style="display: none;">
+          <h2 style="font-size: var(--font-xl); font-weight: 700; margin-bottom: var(--space-6);">Create New Skill</h2>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-event-id">Parent Event ID *</label>
+            <select class="form-select" id="skill-event-id">
+              <option value="">Select an event...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-name">Skill Name *</label>
+            <input type="text" class="form-input" id="skill-name" placeholder="e.g., React">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-id">Skill ID (slug) *</label>
+            <input type="text" class="form-input" id="skill-id" placeholder="e.g., react">
+            <p class="form-hint">URL-friendly identifier. Lowercase, hyphens only.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-description">Description *</label>
+            <textarea class="form-textarea" id="skill-description" placeholder="Describe what learners will gain..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-icon">Icon (emoji)</label>
+            <input type="text" class="form-input" id="skill-icon" placeholder="⚛️" maxlength="4" style="max-width: 80px; font-size: 1.5rem; text-align: center;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-category">Category *</label>
+            <input type="text" class="form-input" id="skill-category" placeholder="e.g., Frontend">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-difficulty">Difficulty *</label>
+            <select class="form-select" id="skill-difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="skill-hours">Estimated Hours</label>
+            <input type="number" class="form-input" id="skill-hours" placeholder="40" min="1" value="40">
+          </div>
+
+          <!-- Theory Sections -->
+          <div class="form-group">
+            <label class="form-label">Theory Sections</label>
+            <div class="dynamic-list" id="theory-sections">
+              <!-- Dynamic items -->
+            </div>
+            <button class="dynamic-list__add" onclick="addTheorySection()">
+              + Add Theory Section
+            </button>
+          </div>
+
+          <!-- Small Projects -->
+          <div class="form-group">
+            <label class="form-label">Small Projects</label>
+            <div class="dynamic-list" id="small-projects">
+              <!-- Dynamic items -->
+            </div>
+            <button class="dynamic-list__add" onclick="addProject('small')">
+              + Add Small Project
+            </button>
+          </div>
+
+          <!-- Full Projects -->
+          <div class="form-group">
+            <label class="form-label">Full Projects</label>
+            <div class="dynamic-list" id="full-projects">
+              <!-- Dynamic items -->
+            </div>
+            <button class="dynamic-list__add" onclick="addProject('full')">
+              + Add Full Project
+            </button>
+          </div>
+
+          <button class="btn btn--primary" onclick="generateSkillJSON()" style="width: 100%; margin-top: var(--space-4);">
+            Generate Skill JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- Preview / Output Side -->
+      <div class="admin-preview" id="admin-preview">
+        <h3 style="font-size: var(--font-lg); font-weight: 700; margin-bottom: var(--space-4);">Generated JSON</h3>
+        <p style="font-size: var(--font-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">
+          Fill out the form and click "Generate" to see the JSON output. Copy and paste it into <code style="color: var(--accent-secondary);">js/data.js</code>.
+        </p>
+
+        <div class="json-output" id="json-output">
+          // Your generated JSON will appear here...
+        </div>
+
+        <div style="display: flex; gap: var(--space-3); margin-top: var(--space-4);">
+          <button class="btn btn--secondary" onclick="copyJSON()" id="copy-btn" style="flex: 1;">
+            📋 Copy JSON
+          </button>
+          <button class="btn btn--ghost" onclick="clearOutput()">
+            Clear
+          </button>
+        </div>
+
+        <!-- Instructions -->
+        <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-subtle);">
+          <h4 style="font-size: var(--font-base); font-weight: 700; margin-bottom: var(--space-3);">📝 How to Add Content</h4>
+          <ol style="font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.8; padding-left: var(--space-5); list-style: decimal;">
+            <li>Fill out the form on the left</li>
+            <li>Click <strong>"Generate JSON"</strong></li>
+            <li>Click <strong>"Copy JSON"</strong></li>
+            <li>Open <code style="color: var(--accent-secondary);">js/data.js</code></li>
+            <li>For <strong>events</strong>: paste inside the <code style="color: var(--accent-secondary);">EVENTS_DATA</code> array</li>
+            <li>For <strong>skills</strong>: paste inside the event's <code style="color: var(--accent-secondary);">skills</code> array</li>
+            <li>Save the file and refresh the site!</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__text">© 2026 HackPath — Built for hackathon teams</p>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">All Events</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Copied to clipboard! 📋</div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

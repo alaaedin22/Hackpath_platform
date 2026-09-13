@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackPath — Your Roadmap to Hackathon Success</title>
+  <meta name="description" content="Discover skills, join learning communities, and follow structured paths to prepare for your next hackathon. Browse events, explore skill roadmaps, and start learning today.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-icon">🚀</span>
+        HackPath
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link nav__link--active">Events</a>
+        <a href="admin.html" class="nav__link">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        Platform for hackathon preparation
+      </div>
+      <h1 class="hero__title">
+        Master Skills.<br>
+        <span class="hero__title-gradient">Win Hackathons.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Discover upcoming hackathons, explore curated skill roadmaps, and join 
+        learning communities. Your team's preparation starts here.
+      </p>
+      <div class="hero__stats" id="hero-stats">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Events -->
+  <section class="container" id="events-section">
+    <div class="section-header" style="text-align: center;">
+      <span class="section-header__label">Upcoming Events</span>
+      <h2 class="section-header__title">Find Your Next Hackathon</h2>
+      <p class="section-header__subtitle" style="margin: 0 auto;">
+        Browse upcoming events, explore their skill tracks, and start preparing with your team.
+      </p>
+    </div>
+
+    <div class="search-bar" id="search-bar">
+      <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input 
+        type="search" 
+        class="search-bar__input" 
+        id="search-input"
+        placeholder="Search events by name, category, or topic..." 
+        aria-label="Search events"
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="card-grid card-grid--events" id="events-grid">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="empty-state__icon">🔍</div>
+      <h3 class="empty-state__title">No events found</h3>
+      <p class="empty-state__text">Try adjusting your search query or check back later for new events.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__text">© 2026 HackPath — Built for hackathon teams</p>
+      <div class="footer__links">
+        <a href="admin.html" class="footer__link">Admin Panel</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
