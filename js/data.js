@@ -46,10 +46,10 @@ const EVENTS_DATA = [
                 "description": "",
                 "resources": [
                   {
-                    "type": "https://drive.google.com/drive/folders/18D-NUE45C7PRno5vMqypVykYKOd5kNwJ",
-                    "title": "",
-                    "url": "",
-                    "time": ""
+                    "type": "docs",
+                    "title": "Google Drive Course Materials",
+                    "url": "https://drive.google.com/drive/folders/18D-NUE45C7PRno5vMqypVykYKOd5kNwJ",
+                    "time": "Folder"
                   }
                 ]
               }
