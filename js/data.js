@@ -28,6 +28,39 @@ const EVENTS_DATA = [
     skills: [
       {
         "id": "python",
+        "name": "Python",
+        "icon": "📘",
+        "category": "Backend",
+        "difficulty": "beginner",
+        "description": "",
+        "memberCount": 0,
+        "estimatedHours": 40,
+        "prerequisites": [],
+        "theory": [
+          {
+            "title": "Pyhton Basics",
+            "description": "",
+            "topics": [
+              {
+                "name": "",
+                "description": "",
+                "resources": [
+                  {
+                    "type": "https://drive.google.com/drive/folders/18D-NUE45C7PRno5vMqypVykYKOd5kNwJ",
+                    "title": "",
+                    "url": "",
+                    "time": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "smallProjects": [],
+        "fullProjects": []
+      },
+      {
+        "id": "python",
         "name": "python",
         "icon": "📘",
         "category": "Backend",
@@ -79,6 +112,50 @@ const EVENTS_DATA = [
               "Python"
             ],
             "steps": []
+          }
+        ],
+        "fullProjects": []
+      },
+      {
+        "id": "pyhton-basics",
+        "name": "Pyhton Basics",
+        "icon": "📘",
+        "category": "Backend",
+        "difficulty": "beginner",
+        "description": "ML and da",
+        "memberCount": 0,
+        "estimatedHours": 40,
+        "prerequisites": [],
+        "theory": [
+          {
+            "title": "Python Concepts",
+            "description": "Python coding Basics",
+            "topics": [
+              {
+                "name": "Start here",
+                "description": "the starrt",
+                "resources": [
+                  {
+                    "type": "https://drive.google.com/drive/folders/18D-NUE45C7PRno5vMqypVykYKOd5kNwJ",
+                    "title": "",
+                    "url": "",
+                    "time": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "smallProjects": [
+          {
+            "title": "house prices ",
+            "description": "",
+            "difficulty": "beginner",
+            "time": "",
+            "skills": [],
+            "steps": [
+              "tirir bark"
+            ]
           }
         ],
         "fullProjects": []
